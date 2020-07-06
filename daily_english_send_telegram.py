@@ -34,8 +34,8 @@ def get_text(web):
 
 def send_message():
     session_token = os.environ['SESSION_TOKEN']
-    with Client(session_token) as app:
-        app.send_message('@englishwospam', time.localtime())
+    with Client(session_token, api_id, api_hash) as app:
+        # app.send_message('@englishwospam', time.localtime())
         website_links = ['https://www.englishclub.com/ref/idiom-of-the-day.php',
                          'https://www.englishclub.com/ref/slang-of-the-day.php',
                          'https://www.englishclub.com/ref/phrasal-verb-of-the-day.php',
@@ -54,9 +54,9 @@ def print_time():
 # schedule crawler
 schedule.every(1).minutes.do(print_time)
 schedule.every(2).minutes.do(send_message)
-schedule.every().day.at("10:30").do(send_message)
+# schedule.every().day.at("07:30").do(send_message)
 
 # run script infinitely
 while True:
     schedule.run_pending()
-    time.sleep(2)
+    time.sleep(1)
