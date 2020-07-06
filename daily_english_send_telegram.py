@@ -35,6 +35,7 @@ def get_text(web):
 def send_message():
     session_token = session.session_token
     with Client(session_token) as app:
+        app.send_message('@englishwospam', time.localtime())
         website_links = ['https://www.englishclub.com/ref/idiom-of-the-day.php',
                          'https://www.englishclub.com/ref/slang-of-the-day.php',
                          'https://www.englishclub.com/ref/phrasal-verb-of-the-day.php',
@@ -44,7 +45,6 @@ def send_message():
             text = get_text(web)
             app.send_message('@englishwospam', text)
             print(text)
-            print(app.export_session_string())
 
 
 def print_time():
