@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from pyrogram import Client
 import schedule
 import time
-import session
+import os
 
 
 def get_text(web):
@@ -33,7 +33,7 @@ def get_text(web):
 
 
 def send_message():
-    session_token = session.session_token
+    session_token = os.environ['SESSION_TOKEN']
     with Client(session_token) as app:
         app.send_message('@englishwospam', time.localtime())
         website_links = ['https://www.englishclub.com/ref/idiom-of-the-day.php',
