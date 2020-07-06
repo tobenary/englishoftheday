@@ -4,6 +4,8 @@ import requests
 from bs4 import BeautifulSoup
 from pyrogram import Client
 import schedule
+import time
+import session
 
 
 def get_text(web):
@@ -31,7 +33,8 @@ def get_text(web):
 
 
 def send_message():
-    with Client("my_account") as app:
+    session_token = session.session_token
+    with Client(session_token) as app:
         website_links = ['https://www.englishclub.com/ref/idiom-of-the-day.php',
                          'https://www.englishclub.com/ref/slang-of-the-day.php',
                          'https://www.englishclub.com/ref/phrasal-verb-of-the-day.php',
@@ -41,11 +44,19 @@ def send_message():
             text = get_text(web)
             app.send_message('@englishwospam', text)
             print(text)
+            print(app.export_session_string())
+
+
+def print_time():
+    print(time.localtime())
 
 
 # schedule crawler
-schedule.every().day.at("10:30").do(send_message())
+schedule.every(1).minutes.do(print_time)
+schedule.every(2).minutes.do(send_message)
+schedule.every().day.at("10:30").do(send_message)
 
 # run script infinitely
 while True:
     schedule.run_pending()
+    time.sleep(2)
