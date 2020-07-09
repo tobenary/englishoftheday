@@ -24,10 +24,10 @@ def get_text(web):
     if not examples:
         examples = ''
 
-    final_text += '**' + word_or_idiom + ':**' + '\n'\
-                  + word_or_idiom_text + '\n'\
-                  + '**' + meaning + '**' + '\n'\
-                  + meaning_text + '\n'\
+    final_text += u'\U000025AB' + '**' + word_or_idiom + ':**' + '\n' \
+                  + word_or_idiom_text + '\n' \
+                  + '\n' + u'\U000025AB' + '**' + meaning + '**' + '\n' \
+                  + meaning_text + '\n' \
                   + examples
     return final_text
 
