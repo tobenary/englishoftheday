@@ -55,7 +55,7 @@ def print_time():
 api_id = os.environ['api_id']
 api_hash = os.environ['api_hash']
 session_token = os.environ['SESSION_TOKEN']
-schedule.every(1).minutes.do(print_time)
+# schedule.every(1).minutes.do(print_time)
 # schedule.every(2).minutes.do(send_message)
 schedule.every().day.at("07:30").do(send_message)
 
